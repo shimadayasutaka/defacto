@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation with vuejs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <style type="text/css">
+  	body {
+  		color: #282a36;
+  		background: #f2f2f2;
+  	}
+  	h1 {
+      margin-top: 7px;
+  		font-size: 56px;
+  		margin-bottom: 24px;
+      line-height: 50px;
+  	}
+    h1 span {
+      font-size: 32px;
+    }
+  	h2 {
+	    margin-bottom: 24px;
+	    font-size: 24px;
+	    border-bottom: 2px solid #282a36;
+	    padding: 8px;
+	    font-weight:bold;
+  	}
+  	h3 {
+		  font-weight: bold;
+	    margin: 32px 0 24px;
+	    background: #dfdfdf;
+	    padding: 8px;
+	    border-radius: 3px;
+  	}
+  	p {
+  		margin-bottom: 32px;
+  		line-height: 1.5;
+  	}
+  	#vue,#ct {
+	    width: 80%;
+	    padding: 32px 0;
+	    max-width: 600px;
+	    margin: 0 auto;
+  	}
+  	.language-javascript {
+		white-space: pre-wrap;
+  	}
+  	.hljs {
+  		padding: 16px;
+  		margin: 8px 0 16px;
+  		border-radius: 3px;
+  	}
+  	section {
+  		padding:40px 0;
+  		background: #fff;
+  	}
+  	form {
+  		margin:40px 0; 
+	    padding: 16px;
+	    background: #fff;
+	    border-radius: 3px;
+  	}
+  	form > div {
+  		margin-top: 16px;
+  	}
+  	form > div:first-child {
+  		margin-top: 0;
+  	}
+  	form > div > * {
+  		display: block;
+  		width: 100%; 
+  	}
+  	form label {
+  		padding: 8px;
+  	}
+  	input {
+  		padding: 16px;
+  		background:#f2f2f2;
+  		border-radius: 3px;
+  	}
+  	input.error {
+  		background:#ffdfdf;
+  		color: #ca0000;
+  	}
+  	input.error + span {
+  		padding: 8px;
+  		color: #ca0000;
+  	}
+  	button {
+	    margin-top: 32px;
+	    border-radius: 3px;
+	    width: 100%;
+	    padding: 16px;
+	    display: block;
+	    text-align: center;
+	    background: #282a36;
+	    color: #fff;
+  	}
+  </style>
+</head>
+<body>
+<div id="vue">
+	<h1>Form Validation<br><span>with Vuejs</span></h1>
+	<form @submit.prevent="submitForm" novalidate>
+	  <div>
+	    <label for="username">ユーザー名</label>
+	    <input type="text" id="username" v-model="formData.username" :class="{ 'error': errors.username }">
+	    <span>{{ errors.username }}</span>
+	  </div>
+	  <div>
+	    <label for="email">メールアドレス</label>
+	    <input type="email" id="email" v-model="formData.email" :class="{ 'error': errors.email }">
+	    <span>{{ errors.email }}</span>
+	  </div>
+	  <div>
+	    <label for="phone">電話番号</label>
+	    <input type="text" id="phone" v-model="formData.phone" :class="{ 'error': errors.phone }">
+	    <span>{{ errors.phone }}</span>
+	  </div>
+	  <div>
+	    <label for="line">住所</label>
+	    <input type="text" id="line" v-model="formData.line" :class="{ 'error': errors.line }">
+	    <span>{{ errors.line }}</span>
+	  </div>
+	  <div>
+	    <label for="other">その他</label>
+	    <input type="text" id="other">
+	  </div>
+	  <button type="submit">送信</button>
+	</form>
+</div>
+<section>
+	<div id="ct">
+	  	<h2>Vue.js</h2>
+	  	<h3>HTML内のコードについて</h3>
+		<div class="code-container">
+			<pre class="prettyprint lang-html linenums"><code class="language-javascript">&lt;script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"&gt;&lt;/script&gt;</code></pre>
+		</div>
+		<p>HTMLの&lt;head&gt;内にVue.jsを読み込むスクリプトを追加します。</p>
+		<div class="code-container">
+			<pre class="prettyprint lang-html linenums"><code class="language-javascript">&lt;form @submit.prevent="submitForm" novalidate&gt;</code></pre>
+		</div>
+		<p>
+			<b>@submit.prevent="submitForm"</b>でVue.jsのイベントハンドラを指定します。<br>
+			<b>novalidate</b>でデフォルトのバリデーションを無効化されます。
+		</p>
+		<div class="code-container">
+			<pre class="prettyprint lang-html linenums"><code class="language-javascript">:class="{ 'error': errors.username }"
+:class="{ 'error': errors.email }"
+:class="{ 'error': errors.phone }"
+:class="{ 'error': errors.line }"</code></pre>
+		</div>
+		<p><b>:class="{ 'error': errors.username }"
+			:class="{ 'error': errors.email }"
+		:class="{ 'error': errors.phone }"
+		:class="{ 'error': errors.line }"</b>は、errors.username、
+		errors.email、
+		errors.phone、
+		errors.lineの状態に応じて、エラーがある場合にフォームのinputタグに'error'クラスが追加され、スタイリングを適用しております。
+		</p>
+		<h3>js内のコードについて</h3>
+		<div class="code-container">
+			<pre class="prettyprint lang-html linenums"><code class="language-javascript">const app = new Vue({
+  el: '#vue',
+  data: {
+  formData: {
+    username: '',
+    email: '',
+    phone: '',
+    line: '',
+  },
+  errors: {
+    username: '',
+    email: '',
+    phone: '',
+    line: '',
+  }
+}</code></pre>
+	    </div>
+	    <p><b>const app = new Vue({ ... })</b>でHTML内のID名vueに紐付けられ、そのエレメント内でVue.jsの機能を使用できるようにします。<br><br>
+		<b>formData</b>このオブジェクトは、フォーム内の各入力フィールドのデータを保持します。username、email、phone、lineのプロパティがあり、それぞれユーザーがフォームに入力した値がバインディングされます。フォームのデータは、ユーザーの入力と同期してリアルタイムで更新されます。<br><br>
+		<b>errors</b>このオブジェクトは、各入力フィールドのバリデーションエラーメッセージを保持します。username、email、phone、lineのプロパティがあり、それぞれのプロパティに対応するフィールドのバリデーションエラーメッセージが格納されます。バリデーションエラーメッセージは、ユーザーの入力に応じて動的に更新され、表示されます。</p>
+	 
+		<div class="code-container">
+			<pre class="prettyprint lang-html linenums"><code class="language-javascript">methods: {
+  submitForm() {
+    this.validateUsername(this.formData.username);
+    this.validateEmail(this.formData.email);
+    this.validatePhone(this.formData.phone);
+    this.validateLine(this.formData.line);
+    if (
+      !this.errors.username &&
+      !this.errors.email &&
+      !this.errors.phone &&
+      !this.errors.line
+    ) {
+      console.log('フォームが正常に送信されました');
+    }
+  },
+  validateUsername(newValue) {
+    this.errors.username = newValue ? '' : 'このフィールドは必須です';
+  },
+  validateEmail(newEmail) {
+    this.errors.email = /\S+@\S+\.\S+/.test(newEmail) ? '' : '正しいメールアドレスを入力してください';
+  },
+  validatePhone(newPhone) {
+    this.errors.phone = /^[0-9]$/.test(newPhone) ? '' : '正しい電話番号を入力してください';
+  },
+  validateLine(newLine) {
+    this.errors.line = newLine ? '' : 'このフィールドは必須です';
+  }
+},</code></pre>
+			<p><b>submitForm()</b>フォームが送信されたときに呼び出されるメソッドです。このメソッド内で、フォームの全フィールドのバリデーションをチェックしています。各バリデーションメソッド（validateUsername、validateEmail、validatePhone、validateLine）が呼び出され、それぞれのフィールドに関するエラーメッセージが更新されます。そして、すべてのフィールドにエラーがない場合にのみ、フォームの送信処理が行われます。<br><br>
+			<b>各バリデーションメソッド（validateUsername、validateEmail、validatePhone、validateLine）</b>これらのメソッドは、それぞれのフィールドのバリデーションを行います。入力値が正しい場合はエラーメッセージをクリアし、誤っている場合は適切なエラーメッセージをセットします。</p>
+		</div>
+
+		<div class="code-container">
+			<pre class="prettyprint lang-html linenums"><code class="language-javascript">watch: {
+  'formData.username': 'validateUsername',
+  'formData.email': 'validateEmail',
+  'formData.phone': 'validatePhone',
+  'formData.line': 'validateLine',
+}</code></pre>
+			<p><b>watch</b>はデータの変更をリアルタイムで検知し、その変更に応じてmethods:内のバリデーションチェックに使用されます。</p>
+		</div>
+
+	</div>
+</section>
+  <script>
+    const app = new Vue({
+      el: '#vue',
+      data: {
+        formData: {
+          username: '',
+          email: '',
+          phone: '',
+          line: '',
+        },
+        errors: {
+          username: '',
+          email: '',
+          phone: '',
+          line: '',
+        }
+      },
+      methods: {
+        submitForm() {
+          this.validateUsername(this.formData.username);
+          this.validateEmail(this.formData.email);
+          this.validatePhone(this.formData.phone);
+          this.validateLine(this.formData.line);
+          if (
+            !this.errors.username &&
+            !this.errors.email &&
+            !this.errors.phone &&
+            !this.errors.line
+          ) {
+            console.log('フォームが正常に送信されました');
+          }
+        },
+        validateUsername(newValue) {
+          this.errors.username = newValue ? '' : 'このフィールドは必須です';
+        },
+        validateEmail(newEmail) {
+          this.errors.email = /\S+@\S+\.\S+/.test(newEmail) ? '' : '正しいメールアドレスを入力してください';
+        },
+        validatePhone(newPhone) {
+          this.errors.phone = /^[0-9]{1,10}$/.test(newPhone) ? '' : '正しい電話番号を入力してください';
+        },
+        validateLine(newLine) {
+          this.errors.line = newLine ? '' : 'このフィールドは必須です';
+        }
+      },
+      watch: {
+        'formData.username': 'validateUsername',
+        'formData.email': 'validateEmail',
+        'formData.phone': 'validatePhone',
+        'formData.line': 'validateLine',
+      }
+    });
+  </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+	<script>
+	  hljs.initHighlightingOnLoad();
+	</script>
+</body>
+</html>
