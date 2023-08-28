@@ -7,126 +7,126 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
   <style type="text/css">
-  	body {
-  		color: #282a36;
-  		background: #f2f2f2;
-  	}
-  	h1 {
-  		font-size: 56px;
-  		margin-bottom: 24px;
-  	}
-  	h2 {
-	    margin-bottom: 24px;
-	    font-size: 24px;
-	    border-bottom: 2px solid #282a36;
-	    padding: 8px;
-	    font-weight:bold;
-  	}
-  	h3 {
-		font-weight: bold;
-	    margin: 32px 0 24px;
-	    background: #dfdfdf;
-	    padding: 8px;
-	    border-radius: 3px;
-  	}
-  	p {
-  		margin-bottom: 32px;
-  		line-height: 1.5;
-  	}
-  	#vue,#ct {
-	    width: 80%;
-	    padding: 32px 0;
-	    max-width: 600px;
-	    margin: 0 auto;
-  	}
-  	.language-javascript {
-		white-space: pre-wrap;
-  	}
-  	.hljs {
-  		padding: 16px;
-  		margin: 8px 0 16px;
-  		border-radius: 3px;
-  	}
-  	section {
-  		padding:40px 0;
-  		background: #fff;
-  	}
-  	form {
-  		margin:40px 0; 
-	    padding: 16px;
-	    background: #fff;
-	    border-radius: 3px;
+    body {
+      color: #282a36;
+      background: #f2f2f2;
+    }
+    h1 {
+      font-size: 56px;
+      margin-bottom: 24px;
+    }
+    h2 {
+      margin-bottom: 24px;
+      font-size: 24px;
+      border-bottom: 2px solid #282a36;
+      padding: 8px;
+      font-weight:bold;
+    }
+    h3 {
+    font-weight: bold;
+      margin: 32px 0 24px;
+      background: #dfdfdf;
+      padding: 8px;
+      border-radius: 3px;
+    }
+    p {
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+    #vue,#ct {
+      width: 80%;
+      padding: 32px 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .language-javascript {
+    white-space: pre-wrap;
+    }
+    .hljs {
+      padding: 16px;
+      margin: 8px 0 16px;
+      border-radius: 3px;
+    }
+    section {
+      padding:40px 0;
+      background: #fff;
+    }
+    form {
+      margin:40px 0; 
+      padding: 16px;
+      background: #fff;
+      border-radius: 3px;
       box-shadow: 0px 4px 26px 0px rgb(107 107 107 / 20%);
-  	}
-  	form > div {
-  		margin-top: 16px;
-  	}
-  	form > div:first-child {
-  		margin-top: 0;
-  	}
-  	form > div > * {
-  		display: block;
-  		width: 100%; 
-  	}
-  	form label {
-  		padding: 8px;
-  	}
-  	input {
-  		padding: 16px;
-  		background:#f2f2f2;
-  		border-radius: 3px;
-  	}
-  	input.error {
-  		background:#ffdfdf;
-  		color: #ca0000;
-  	}
-  	input.error + span {
-  		padding: 8px;
-  		color: #ca0000;
-  	}
-  	button {
-	    margin-top: 32px;
-	    border-radius: 3px;
-	    width: 100%;
-	    padding: 16px;
-	    display: block;
-	    text-align: center;
-	    background: #282a36;
-	    color: #fff;
-  	}
+    }
+    form > div {
+      margin-top: 16px;
+    }
+    form > div:first-child {
+      margin-top: 0;
+    }
+    form > div > * {
+      display: block;
+      width: 100%; 
+    }
+    form label {
+      padding: 8px;
+    }
+    input {
+      padding: 16px;
+      background:#f2f2f2;
+      border-radius: 3px;
+    }
+    input.error {
+      background:#ffdfdf;
+      color: #ca0000;
+    }
+    input.error + span {
+      padding: 8px;
+      color: #ca0000;
+    }
+    button {
+      margin-top: 32px;
+      border-radius: 3px;
+      width: 100%;
+      padding: 16px;
+      display: block;
+      text-align: center;
+      background: #282a36;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
-  <div id="vue">
-    <h1>Form Validation</h1>
-    <form>
-      <div>
-        <label for="username">ユーザー名</label>
-        <input type="text" id="username" oninput="validateUsername()">
-        <span id="usernameError"></span>
-      </div>
-      <div>
-        <label for="email">メールアドレス</label>
-        <input type="email" id="email" oninput="validateEmail()">
-        <span id="emailError"></span>
-      </div>
-      <div>
-        <label for="phone">電話番号</label>
-        <input type="text" id="phone" oninput="validatePhone()">
-        <span id="phoneError"></span>
-      </div>
-      <div>
-        <label for="line">住所</label>
-        <input type="text" id="line" oninput="validateLine()">
-        <span id="lineError"></span>
-      </div>
-      <div>
-        <label for="other">その他</label>
-        <input type="text" id="other">
-      </div>
-      <button type="submit" onclick="return validateForm()">送信</button>
-    </form>
-  </div>
+<div id="vue">
+  <h1>Form Validation</h1>
+  <form>
+    <div>
+      <label for="username">ユーザー名</label>
+      <input type="text" id="username" oninput="validateUsername()">
+      <span id="usernameError"></span>
+    </div>
+    <div>
+      <label for="email">メールアドレス</label>
+      <input type="email" id="email" oninput="validateEmail()">
+      <span id="emailError"></span>
+    </div>
+    <div>
+      <label for="phone">電話番号</label>
+      <input type="text" id="phone" oninput="validatePhone()">
+      <span id="phoneError"></span>
+    </div>
+    <div>
+      <label for="line">住所</label>
+      <input type="text" id="line" oninput="validateLine()">
+      <span id="lineError"></span>
+    </div>
+    <div>
+      <label for="other">その他</label>
+      <input type="text" id="other">
+    </div>
+    <button type="submit" onclick="return validateForm()">送信</button>
+  </form>
+</div>
 
 <section>
   <div id="ct">
@@ -173,72 +173,72 @@ oninput="validateLine()"</code></pre>
   </div>
 </section>
 
-  <script>
-    function validateUsername() {
-      var username = document.getElementById("username").value;
-      var usernameError = document.getElementById("usernameError");
+<script>
+  function validateUsername() {
+    var username = document.getElementById("username").value;
+    var usernameError = document.getElementById("usernameError");
 
-      if (!username) {
-        document.getElementById("username").classList.add("error");
-        usernameError.textContent = "このフィールドは必須です";
-      } else {
-        document.getElementById("username").classList.remove("error");
-        usernameError.textContent = "";
-      }
+    if (!username) {
+      document.getElementById("username").classList.add("error");
+      usernameError.textContent = "このフィールドは必須です";
+    } else {
+      document.getElementById("username").classList.remove("error");
+      usernameError.textContent = "";
     }
+  }
 
-    function validateEmail() {
-      var email = document.getElementById("email").value;
-      var emailError = document.getElementById("emailError");
+  function validateEmail() {
+    var email = document.getElementById("email").value;
+    var emailError = document.getElementById("emailError");
 
-      if (!/\S+@\S+\.\S+/.test(email)) {
-        document.getElementById("email").classList.add("error");
-        emailError.textContent = "正しいメールアドレスを入力してください";
-      } else {
-        document.getElementById("email").classList.remove("error");
-        emailError.textContent = "";
-      }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      document.getElementById("email").classList.add("error");
+      emailError.textContent = "正しいメールアドレスを入力してください";
+    } else {
+      document.getElementById("email").classList.remove("error");
+      emailError.textContent = "";
     }
+  }
 
-    function validatePhone() {
-      var phone = document.getElementById("phone").value;
-      var phoneError = document.getElementById("phoneError");
+  function validatePhone() {
+    var phone = document.getElementById("phone").value;
+    var phoneError = document.getElementById("phoneError");
 
-      if (!/^[0-9]{1,10}$/.test(phone)) {
-        document.getElementById("phone").classList.add("error");
-        phoneError.textContent = "正しい電話番号を入力してください";
-      } else {
-        document.getElementById("phone").classList.remove("error");
-        phoneError.textContent = "";
-      }
+    if (!/^[0-9]{1,10}$/.test(phone)) {
+      document.getElementById("phone").classList.add("error");
+      phoneError.textContent = "正しい電話番号を入力してください";
+    } else {
+      document.getElementById("phone").classList.remove("error");
+      phoneError.textContent = "";
     }
+  }
 
-    function validateLine() {
-      var line = document.getElementById("line").value;
-      var lineError = document.getElementById("lineError");
+  function validateLine() {
+    var line = document.getElementById("line").value;
+    var lineError = document.getElementById("lineError");
 
-      if (!line) {
-        document.getElementById("line").classList.add("error");
-        lineError.textContent = "このフィールドは必須です";
-      } else {
-        document.getElementById("line").classList.remove("error");
-        lineError.textContent = "";
-      }
+    if (!line) {
+      document.getElementById("line").classList.add("error");
+      lineError.textContent = "このフィールドは必須です";
+    } else {
+      document.getElementById("line").classList.remove("error");
+      lineError.textContent = "";
     }
+  }
 
-    function validateForm() {
-      validateUsername();
-      validateEmail();
-      validatePhone();
-      validateLine();
+  function validateForm() {
+    validateUsername();
+    validateEmail();
+    validatePhone();
+    validateLine();
 
-      var errors = document.querySelectorAll(".error");
-      return errors.length === 0;
-    }
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
-  <script>
-    hljs.initHighlightingOnLoad();
-  </script>
+    var errors = document.querySelectorAll(".error");
+    return errors.length === 0;
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
 </body>
 </html>
