@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <style type="text/css">
+  	body {
+  		color: #282a36;
+  		background: #f2f2f2;
+  	}
+  	h1 {
+  		font-size: 56px;
+  		margin-bottom: 24px;
+  	}
+  	h2 {
+	    margin-bottom: 24px;
+	    font-size: 24px;
+	    border-bottom: 2px solid #282a36;
+	    padding: 8px;
+	    font-weight:bold;
+  	}
+  	h3 {
+		font-weight: bold;
+	    margin: 32px 0 24px;
+	    background: #dfdfdf;
+	    padding: 8px;
+	    border-radius: 3px;
+  	}
+  	p {
+  		margin-bottom: 32px;
+  		line-height: 1.5;
+  	}
+  	#vue,#ct {
+	    width: 80%;
+	    padding: 32px 0;
+	    max-width: 600px;
+	    margin: 0 auto;
+  	}
+  	.language-javascript {
+		white-space: pre-wrap;
+  	}
+  	.hljs {
+  		padding: 16px;
+  		margin: 8px 0 16px;
+  		border-radius: 3px;
+  	}
+  	section {
+  		padding:40px 0;
+  		background: #fff;
+  	}
+  	form {
+  		margin:40px 0; 
+	    padding: 16px;
+	    background: #fff;
+	    border-radius: 3px;
+  	}
+  	form > div {
+  		margin-top: 16px;
+  	}
+  	form > div:first-child {
+  		margin-top: 0;
+  	}
+  	form > div > * {
+  		display: block;
+  		width: 100%; 
+  	}
+  	form label {
+  		padding: 8px;
+  	}
+  	input {
+  		padding: 16px;
+  		background:#f2f2f2;
+  		border-radius: 3px;
+  	}
+  	input.error {
+  		background:#ffdfdf;
+  		color: #ca0000;
+  	}
+  	input.error + span {
+  		padding: 8px;
+  		color: #ca0000;
+  	}
+  	button {
+	    margin-top: 32px;
+	    border-radius: 3px;
+	    width: 100%;
+	    padding: 16px;
+	    display: block;
+	    text-align: center;
+	    background: #282a36;
+	    color: #fff;
+  	}
+  </style>
+</head>
+<body>
+  <div id="vue">
+    <h1>Form Validation</h1>
+    <form>
+      <div>
+        <label for="username">ユーザー名</label>
+        <input type="text" id="username" oninput="validateUsername()">
+        <span id="usernameError"></span>
+      </div>
+      <div>
+        <label for="email">メールアドレス</label>
+        <input type="email" id="email" oninput="validateEmail()">
+        <span id="emailError"></span>
+      </div>
+      <div>
+        <label for="phone">電話番号</label>
+        <input type="text" id="phone" oninput="validatePhone()">
+        <span id="phoneError"></span>
+      </div>
+      <div>
+        <label for="line">住所</label>
+        <input type="text" id="line" oninput="validateLine()">
+        <span id="lineError"></span>
+      </div>
+      <div>
+        <label for="other">その他</label>
+        <input type="text" id="other">
+      </div>
+      <button type="submit" onclick="return validateForm()">送信</button>
+    </form>
+  </div>
+
+<section>
+  <div id="ct">
+    <h2>JavaScript</h2>
+    <h3>HTML内のコードについて</h3>
+    <div class="code-container">
+      <pre class="prettyprint lang-html linenums"><code class="language-javascript">oninput="validateUsername()"
+oninput="validateEmail()"
+oninput="validatePhone()"
+oninput="validateLine()"</code></pre>
+      <p><b>oninput="()"</b>で入力時それぞれの関数が呼び出されます。</p>
+    </div>
+
+    <h3>JS内のコードについて</h3>
+    <div class="code-container">
+      <pre class="prettyprint lang-html linenums"><code class="language-javascript">function validateUsername() {
+  var username = document.getElementById("username").value;
+  var usernameError = document.getElementById("usernameError");
+
+  if (!username) {
+    document.getElementById("username").classList.add("error");
+    usernameError.textContent = "このフィールドは必須です";
+  } else {
+    document.getElementById("username").classList.remove("error");
+    usernameError.textContent = "";
+  }
+}</code></pre>
+      <p><b>validateUsername()、validateEmail()、validatePhone()、validateLine()</b>それぞれの入力をバリデーションし、必要に応じてエラーメッセージを表示します。</p>
+    </div>
+
+    <div class="code-container">
+      <pre class="prettyprint lang-html linenums"><code class="language-javascript">function validateForm() {
+    validateUsername();
+    validateEmail();
+    validatePhone();
+    validateLine();
+
+    var errors = document.querySelectorAll(".error");
+    return errors.length === 0;
+  }</code></pre>
+      <p><b>function validateForm()</b>全ての必須項目の入力をバリデーションし、必要に応じてエラーメッセージを表示します。</p>
+    </div>
+
+  </div>
+</section>
+
+  <script>
+    function validateUsername() {
+      var username = document.getElementById("username").value;
+      var usernameError = document.getElementById("usernameError");
+
+      if (!username) {
+        document.getElementById("username").classList.add("error");
+        usernameError.textContent = "このフィールドは必須です";
+      } else {
+        document.getElementById("username").classList.remove("error");
+        usernameError.textContent = "";
+      }
+    }
+
+    function validateEmail() {
+      var email = document.getElementById("email").value;
+      var emailError = document.getElementById("emailError");
+
+      if (!/\S+@\S+\.\S+/.test(email)) {
+        document.getElementById("email").classList.add("error");
+        emailError.textContent = "正しいメールアドレスを入力してください";
+      } else {
+        document.getElementById("email").classList.remove("error");
+        emailError.textContent = "";
+      }
+    }
+
+    function validatePhone() {
+      var phone = document.getElementById("phone").value;
+      var phoneError = document.getElementById("phoneError");
+
+      if (!/^[0-9]{1,10}$/.test(phone)) {
+        document.getElementById("phone").classList.add("error");
+        phoneError.textContent = "正しい電話番号を入力してください";
+      } else {
+        document.getElementById("phone").classList.remove("error");
+        phoneError.textContent = "";
+      }
+    }
+
+    function validateLine() {
+      var line = document.getElementById("line").value;
+      var lineError = document.getElementById("lineError");
+
+      if (!line) {
+        document.getElementById("line").classList.add("error");
+        lineError.textContent = "このフィールドは必須です";
+      } else {
+        document.getElementById("line").classList.remove("error");
+        lineError.textContent = "";
+      }
+    }
+
+    function validateForm() {
+      validateUsername();
+      validateEmail();
+      validatePhone();
+      validateLine();
+
+      var errors = document.querySelectorAll(".error");
+      return errors.length === 0;
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+</body>
+</html>
