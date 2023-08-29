@@ -153,6 +153,44 @@ oninput="validateLine()"</code></pre>
     document.getElementById("username").classList.remove("error");
     usernameError.textContent = "";
   }
+}
+function validateEmail() {
+  var email = document.getElementById("email").value;
+  var emailError = document.getElementById("emailError");
+
+  if (!/\S+@\S+\.\S+/.test(email)) {
+    document.getElementById("email").classList.add("error");
+    emailError.textContent = "正しいメールアドレスを入力してください";
+  } else {
+    document.getElementById("email").classList.remove("error");
+    emailError.textContent = "";
+  }
+}
+
+function validatePhone() {
+  var phone = document.getElementById("phone").value;
+  var phoneError = document.getElementById("phoneError");
+
+  if (!/^[0-9]{1,10}$/.test(phone)) {
+    document.getElementById("phone").classList.add("error");
+    phoneError.textContent = "正しい電話番号を入力してください";
+  } else {
+    document.getElementById("phone").classList.remove("error");
+    phoneError.textContent = "";
+  }
+}
+
+function validateLine() {
+  var line = document.getElementById("line").value;
+  var lineError = document.getElementById("lineError");
+
+  if (!line) {
+    document.getElementById("line").classList.add("error");
+    lineError.textContent = "このフィールドは必須です";
+  } else {
+    document.getElementById("line").classList.remove("error");
+    lineError.textContent = "";
+  }
 }</code></pre>
       <p><b>validateUsername()、validateEmail()、validatePhone()、validateLine()</b>それぞれの入力をバリデーションし、必要に応じてエラーメッセージを表示します。</p>
     </div>
